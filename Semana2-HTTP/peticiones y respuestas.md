@@ -27,33 +27,33 @@ Las respuestas son la salida del sitio web con respecto a una petición anterior
 
 ### * Respuestas informativas (100-199)
 
-	* **100	Continue:** Indica que no hay errores hasta el momento y que el cliente puede continuar con la solicitud o ignorarla
+	* 100	Continue: Indica que no hay errores hasta el momento y que el cliente puede continuar con la solicitud o ignorarla
 
-	* **101	Switching Protocol:** Responde a una peticion Upgrade e indica que el servidor acepta el cambio de protocolo
+	* 101	Switching Protocol: Responde a una peticion Upgrade e indica que el servidor acepta el cambio de protocolo
 
 ### * Respuestas satisfactorias (200-299)
 
-	* **200	OK:** Indica solicitud exitosa
+	* 200	OK: Indica solicitud exitosa
 
-	* **201	Created:** Responde a la solicitud de creación de un recurso e indica solicitud exitosa 
+	* 201	Created: Responde a la solicitud de creación de un recurso e indica solicitud exitosa 
 
 ### * Redirecciones (300-399)
 
-	* **301	Moved Permanently:** Indica que la URI del recurso solicitado ha sido cambiado
+	* 301	Moved Permanently: Indica que la URI del recurso solicitado ha sido cambiado
 
-	* **302	Found:** Indica que la URI del recurso solicitado ha sido cambiada temporalmente
+	* 302	Found: Indica que la URI del recurso solicitado ha sido cambiada temporalmente
 
 ### * Errores de los clientes (400-499)
 
-	* **403	Forbidden:** Indica que se ha hecho una solicitud que requiere más permisos que los del cliente para ser aceptada
+	* 403	Forbidden: Indica que se ha hecho una solicitud que requiere más permisos que los del cliente para ser aceptada
 
-	* **404	Not Found:** Indica que no se ha encontrado el recurso solicitado en la URI especificada
+	* 404	Not Found: Indica que no se ha encontrado el recurso solicitado en la URI especificada
 
 ### * Errores de los servidores (500-599)
 
-	* **500	Internal Server Error:** Indica que, durante la solicitud, el servidor ha enfrentado una situación imprevista
+	* 500	Internal Server Error: Indica que, durante la solicitud, el servidor ha enfrentado una situación imprevista
 
-	* **502	Bad Gateway:** Indica que el servidor obtuvo una respuesta invalida al actuar como puerta de enlace para recibir una respuesta necesaria
+	* 502	Bad Gateway: Indica que el servidor obtuvo una respuesta invalida al actuar como puerta de enlace para recibir una respuesta necesaria
 
 
 
