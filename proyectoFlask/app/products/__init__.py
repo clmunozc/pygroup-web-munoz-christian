@@ -1,1 +1,1 @@
-from products.views import prod
+DEBUG = True  # Turns on debugging features in Flask

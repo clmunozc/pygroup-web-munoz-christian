@@ -1,15 +1,29 @@
-from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
 db = SQLAlchemy()
 ma = Marshmallow()
 
-def create_all():
-    db.create_all()
 
 def drop_all():
+    """
+    Drop all tables in DB
+    :return:
+    """
     db.drop_all()
 
-def remove_session():
-    db.session.remove()
 
+def create_all():
+    """
+    Create all tables in DB
+    :return:
+    """
+    db.create_all()
+
+
+def remove_session():
+    """
+    Removes DB Session
+    :return:
+    """
+    db.session.remove()

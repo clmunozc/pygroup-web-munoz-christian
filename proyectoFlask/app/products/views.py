@@ -1,67 +1,179 @@
-from flask import Blueprint, Response, request
+import sys
 from http import HTTPStatus
-from products.models import get_all_categories, get_all_products
 
-prod = Blueprint('prod', __name__, url_prefix='/products')
+from flask import Blueprint, Response, request, render_template, redirect, url_for
 
-@prod.route('/all', methods=['GET'])
-def get_products():
-     """
-     """
-     products_ = get_all_products()
-     RESPONSE_BODY['message'] = 'OK'
-     RESPONSE_BODY['data'] = products_
+from app.products.forms import CreateCategoryForm
+from app.products.models import (
+    get_all_categories,
+    create_new_category,
+    create_new_product,
+    get_all_products,
+    get_product_by_id,
+)
 
-     return RESPONSE_BODY, 200
+products = Blueprint("products", __name__, url_prefix="/products")
 
-@prod.route('/<name>', methods=['GET'])
-def get_products(name):
-     stn = "<h1>Bienvenido a productos</h1><br/><br/>"
-     stn = stn + "Mostrando sitio del producto {}".format(name)
-     return stn
+EMPTY_SHELVE_TEXT = "Empty shelve!"
+PRODUCTS_TITLE = "<h1> Products </h1>"
+DUMMY_TEXT = "Dummy method to show how Response works"
+RESPONSE_BODY = {"message": "", "data": [], "errors": [], "metadata": []}
 
-def render_template():
-    """ El metodo de render_template se utiliza para usar un archivo
-    HTML como plantilla para que el modulo de Views.py de nuestra
-    aplicacion Flask pueda llenar los campos dinamicos de nuestra
-    plantilla HTML con respecto a la URL solicitada por el cliente.
-    Entradas:
-    ruta al template HTML,
-    campos*= contenidos* solicitado de campos.
-    Salidas: Vista HTML de la plantilla con el contenido asignado.
+
+@products.route("/dummy-product", methods=["GET", "POST"])
+def dummy_product():
+    """This method test the request types. If is GET Type it will
+    render the text Products in h1 label with code 500.
+    If is POST Type it will return Empty shelve! with status code 403
     """
-    return None
+    if request.method == "POST":
+        return EMPTY_SHELVE_TEXT, HTTPStatus.FORBIDDEN
 
-@prod.route('/categories', methods=['GET'])
+    return PRODUCTS_TITLE, HTTPStatus.INTERNAL_SERVER_ERROR
+
+
+@products.route("/dummy-product-2")
+def dummy_product_two():
+    """This method shows how Response object could be used to make API
+    methods.
+    """
+    return Response(DUMMY_TEXT, status=HTTPStatus.OK)
+
+
+@products.route("/categories")
 def get_categories():
-     """
-     """
-     categories_ = get_all_categories()
+    """
+        Verificar que si get_all_categories es [] 400, message = "No hay nada"
+    :return:
+    """
+    categories = get_all_categories()
+    RESPONSE_BODY["data"] = categories
+    RESPONSE_BODY["message"] = "Categories list"
+    status_code = HTTPStatus.OK
+    
+##    if categories:
+##        RESPONSE_BODY["message"] = "OK. Categories List"
+##        RESPONSE_BODY["data"] = categories
+##    else:
+##        RESPONSE_BODY["message"] = "OK. No categories found"
+##        RESPONSE_BODY["data"] = categories
+##        status_code = HTTPStatus.INTERNAL_SERVER_ERROR
 
-     RESPONSE_BODY['message'] = 'OK'
-     RESPONSE_BODY['data'] = categories_
+    return RESPONSE_BODY, status_code
 
-     return RESPONSE_BODY, 200
 
-@prod.route('/add-category', methods=['POST'])
+@products.route("/add-category", methods=["POST"])
 def create_category():
-     """
-     """
-     if request.method == "POST":
-          data = request.json
-          category = create_new_category(data['name'])
-          RESPONSE_BODY['message'] = 'Category created.'
+    """
 
-          return RESPONSE_BODY, 201
+    :return:
+    """
+    RESPONSE_BODY["message"] = "Method not allowed"
+    status_code = HTTPStatus.METHOD_NOT_ALLOWED
+    if request.method == "POST":
+        data = request.json
+        category = create_new_category(data["name"])
+        RESPONSE_BODY["message"] = "OK. Category created!"
+        RESPONSE_BODY["data"] = category
+        status_code = HTTPStatus.CREATED
 
-@prod.route('/add-product', methods=['POST'])
+    return RESPONSE_BODY, status_code
+
+@products.route('/add-product', methods=['POST'])
 def create_product():
      """
+
+     :return:
      """
+     RESPONSE_BODY["message"] = "Method not allowed"
+     status_code = HTTPStatus.METHOD_NOT_ALLOWED
      if request.method == "POST":
           data = request.json
-          category = create_new_product(data['name'],data['price'],data['weight'],
-                                        data['description'],data['refundable'],data['category_id'])
-          RESPONSE_BODY['message'] = 'Product created.'
+          category = create_new_product(data['name'],
+                                        data['image'],
+                                        data['price'],
+                                        data['weight'],
+                                        data['description'],
+                                        data['refundable'],
+                                        data['category_id'])
+          RESPONSE_BODY['message'] = 'OK. Product created.'
+          status_code = HTTPStatus.CREATED
 
-          return RESPONSE_BODY, 201
+          return RESPONSE_BODY, status_code
+
+@products.route("/")
+def get_products():
+    products_obj = get_all_products()
+
+    RESPONSE_BODY["data"] = products_obj
+    RESPONSE_BODY["message"] = "Products list"
+
+    return RESPONSE_BODY, HTTPStatus.OK
+
+
+@products.route("/product/<int:id>")
+def get_product(id):
+    product = get_product_by_id(id)
+
+    RESPONSE_BODY["data"] = product
+    return RESPONSE_BODY, HTTPStatus.OK
+
+
+@products.route("/product-stock/<int:product_id>")
+def get_product_stock(product_id):
+    product_stock = get_stock_by_product(product_id)
+    RESPONSE_BODY["message"] = "Product stock"
+    RESPONSE_BODY["data"] = product_stock
+
+    return RESPONSE_BODY, HTTPStatus.OK
+
+
+@products.route("/need-restock")
+def get_products_that_need_restock():
+    products_low_stock = get_products_with_low_stock()
+    RESPONSE_BODY["message"] = "This products need to be re-stocked"
+    RESPONSE_BODY["data"] = products_low_stock
+
+    return RESPONSE_BODY, HTTPStatus.OK
+
+
+@products.route("/register-product-stock/<int:id>", methods=["PUT", "POST"])
+def register_product_refund_in_stock():
+    status_code = HTTPStatus.CREATED
+    if request.method == "PUT":
+        RESPONSE_BODY["message"] = \
+            "Stock for this product were updated successfully!"
+        status_code = HTTPStatus.OK
+    elif request.method == "POST":
+        RESPONSE_BODY["message"] = \
+            "Stock for this product were created successfully!"
+        pass
+    else:
+        RESPONSE_BODY["message"] = "Method not Allowed"
+        status_code = HTTPStatus.METHOD_NOT_ALLOWED
+
+
+@products.route('/success')
+def success():
+    return render_template('category_success.html')
+
+
+@products.route('/create-category-form', methods=['GET', 'POST'])
+def create_category_form():
+    form_category = CreateCategoryForm()
+    if request.method == 'POST' and form_category.validate():
+        create_new_category(name=form_category.name.data)
+        return redirect(url_for('products.success'))
+
+    return render_template('create_category_form.html', form=form_category)
+
+@products.route('/add-category-old', methods=['GET', 'POST'])
+def create_category_old():
+    if request.method=='POST':
+        category = create_new_category(request.form["name"])
+        RESPONSE_BODY["message"] = "Se agrego la categoria {} con exito".format(request.form["name"])
+        RESPONSE_BODY["data"] = category
+        status_code = HTTPStatus.CREATED
+        return RESPONSE_BODY, status_code
+    return render_template("form_category_old.html")
+

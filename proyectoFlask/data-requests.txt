@@ -1,0 +1,131 @@
+Categories:
+{
+  "name":"Sedante"
+}
+{
+  "name":"Alucinogena"
+}
+{
+  "name":"Estimulante"
+}
+{
+  "name":"Toxica"
+}
+Products:
+{
+  "name":"Marihuana White Rhino",
+  "image":"https://www.cheapbudcanada.com/wp-content/uploads/2020/04/White-Rhino.jpg",
+  "price": 4.1,
+  "weight": 1,
+  "description": "1g. de Marihuana hibrida de variedad White Rhino.",
+  "refundable": false,
+  "category_id": 1
+}
+{
+  "name":"Marihuana Bubba Kush",
+  "image":"https://wayofleaf.com/wp-content/uploads/2019/01/Bubba-Kush-Strain_450-min.jpg",
+  "price": 3.6,
+  "weight": 1,
+  "description": "1g. de Marihuana indica de variedad Bubba Kush",
+  "refundable": false,
+  "category_id": 1
+}
+{
+  "name":"Marihuana Jack Herer",
+  "image":"https://mynushop.com/wp-content/uploads/2020/01/jack-herer-strain.jpg",
+  "price": 3.8,
+  "weight": 1,
+  "description": "1g. de Marihuana sativa de variante Jack Herer.",
+  "refundable": false,
+  "category_id": 1
+}
+{
+  "name":"Dosis de acido LSD x10",
+  "image":"https://pharmnext.net/wp-content/uploads/2016/10/LD-template.jpg",
+  "price": 59.9,
+  "weight": 0.05,
+  "description": "10 dosis de acido LSD puro.",
+  "refundable": false,
+  "category_id": 2
+}
+{
+  "name":"DMT",
+  "image":"https://images.squarespace-cdn.com/content/v1/5d02bba7bafe470001d54e09/1567106658626-6KBTRX0PHZL9GX4DQM28/ke17ZwdGBToddI8pDm48kDG23DqV0vp_Gn30xyxXRb97gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1UWLAIZGCU28PgXtoPfGI0XuZyhKZDjQzQNQpAtQuu2sBKSe1Ub8hc1wCK27eO-wZEg/DMT-3.jpg",
+  "price": 69.9,
+  "weight": 1,
+  "description": "1g. de polvo de DMT.",
+  "refundable": false,
+  "category_id": 2
+}
+{
+  "name":"Mescalina",
+  "image":"https://pharmnext.net/wp-content/uploads/2016/11/mescaline.png",
+  "price": 59.9,
+  "weight": 3,
+  "description": "3g. de polvo de Mescalina.",
+  "refundable": false,
+  "category_id": 2
+}
+{
+  "name":"Anfetamina (Speed)",
+  "image":"https://pharmnext.net/wp-content/uploads/2016/10/amphetamine-powder.png",
+  "price": 74.9,
+  "weight": 5,
+  "description": "5g. de polvo de sulfato de Anfetamina.",
+  "refundable": false,
+  "category_id": 3
+}
+{
+  "name":"MDMA (Molly, Extasis)",
+  "image":"https://pharmnext.net/wp-content/uploads/2016/10/mdma.png",
+  "price": 78.4,
+  "weight": 0.176,
+  "description": "5 pastillas de MDMA, conocido como Extasis o Molly",
+  "refundable": false,
+  "category_id": 3
+}
+{
+  "name":"Metanfetamina de cristal (Cristal Meth)",
+  "image":"https://pharmnext.net/wp-content/uploads/2016/10/methamphetamine-crystal-meth.png",
+  "price": 159.9,
+  "weight": 5,
+  "description": "5 g. de Metanfetamina de Cristal",
+  "refundable": false,
+  "category_id": 3
+}
+{
+  "name":"Metanfetamina de cristal azul (Blue Cristal)",
+  "image":"https://www.drugrehab.com/wp-content/uploads/2018/04/hero-blue-meth.jpg",
+  "price": 234.9,
+  "weight": 5,
+  "description": "5 g. de Metanfetamina de Cristal Azul (Formula Walter White)",
+  "refundable": false,
+  "category_id": 3
+}
+{
+  "name":"Anthrax",
+  "image":"https://www.activistpost.com/wp-content/uploads/2015/03/whitepowder.jpg",
+  "price": 299.9,
+  "weight": 1,
+  "description": "1 g. de Anthrax (Este producto es altamente toxico y se vende con fines de investigación, cualquier delito cometido con este producto es estricta responsabilidad del comprador).",
+  "refundable": false,
+  "category_id": 4
+}
+{
+  "name":"Cianuro de Sodio",
+  "image":"https://static.grainger.com/rp/s/is/image/Grainger/39G910_AW01?hei=536&wid=536&$adapimg$=",
+  "price": 98.9,
+  "weight": 25,
+  "description": "25g. en tabletas de Cianuro de Sodio (Este producto es altamente toxico y se vende con fines de investigación, cualquier delito cometido con este producto es estricta responsabilidad del comprador).",
+  "refundable": false,
+  "category_id": 4
+}
+{
+  "name":"Etilenglicol",
+  "image":"https://static.grainger.com/rp/s/is/image/Grainger/6NMG8_AS01?hei=536&wid=536&$adapimg$=",
+  "price": 152.4,
+  "weight": 1360.78,
+  "description": "1L de Etilenglicol (Este producto es altamente toxico y se vende con fines de investigación, cualquier delito cometido con este producto es estricta responsabilidad del comprador).",
+  "refundable": false,
+  "category_id": 4
+}
