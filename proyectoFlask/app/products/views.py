@@ -47,17 +47,17 @@ def get_categories():
     :return:
     """
     categories = get_all_categories()
-    RESPONSE_BODY["data"] = categories
-    RESPONSE_BODY["message"] = "Categories list"
-    status_code = HTTPStatus.OK
+##    RESPONSE_BODY["data"] = categories
+##    RESPONSE_BODY["message"] = "Categories list"
+##    status_code = HTTPStatus.OK
     
-##    if categories:
-##        RESPONSE_BODY["message"] = "OK. Categories List"
-##        RESPONSE_BODY["data"] = categories
-##    else:
-##        RESPONSE_BODY["message"] = "OK. No categories found"
-##        RESPONSE_BODY["data"] = categories
-##        status_code = HTTPStatus.INTERNAL_SERVER_ERROR
+    if categories:
+        RESPONSE_BODY["message"] = "OK. Categories List"
+        RESPONSE_BODY["data"] = categories
+    else:
+        RESPONSE_BODY["message"] = "OK. No categories found"
+        RESPONSE_BODY["data"] = categories
+        status_code = HTTPStatus.INTERNAL_SERVER_ERROR
 
     return RESPONSE_BODY, status_code
 
