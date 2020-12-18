@@ -1,12 +1,12 @@
 from flask import Flask
 from flask_wtf import CSRFProtect
-
+from app.auth.views import auth
 from app.db import db, ma
 from conf.config import DevelopmentConfig
 from app.products.views import products
 from flask_migrate import Migrate
 
-ACTIVE_ENDPOINTS = [('/products', products)]
+ACTIVE_ENDPOINTS = [('/products', products),('/', auth)]
 
 
 def create_app(config=DevelopmentConfig):
